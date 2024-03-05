@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { sendOtp } from '../../services/auth'
 
+import styles from './SendOtpForm.module.css'
+
 function SendOtpForm( {mobile, setMobile, setStep} ) {
     const submitHandler = async (e)=>{
 
@@ -13,7 +15,7 @@ function SendOtpForm( {mobile, setMobile, setStep} ) {
         if(response) setStep(2)
     }
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={styles.form}>
         <p>شمارهٔ موبایل خود را وارد کنید</p>
         <span>برای استفاده از امکانات دیوار، لطفاً شمارهٔ موبایل خود را وارد کنید. کد تأیید به این شماره پیامک خواهد شد.</span>
         <label htmlFor="input">شماره موبایل خود را وارد کنید</label>
