@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import Router from './routes/Router'
 import defaultOptions from './configs/reactQueryConfigs'
+import Layout from './layouts/Layout'
 
 function App() {
 
@@ -12,7 +13,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <Router />
+        <Layout>
+          <Router />
+        </Layout>
       </BrowserRouter>
       <ReactQueryDevtools />
     </QueryClientProvider>
