@@ -16,6 +16,13 @@
     display: flex;
 }
 
+.header span{
+    display: flex;
+    align-items: center;
+    color: gray;
+    height: 50px;
+}
+
 .header span p{
     margin-right: 5px;
     font-size: 0.9rem;
