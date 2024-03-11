@@ -1,8 +1,18 @@
 import React, { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+
+import { addCategory } from '../../services/admin'
+
+import styles from './category.module.css'
 
 function CategoryForm() {
 
-    const [form, setForm] = useState({name:'', slug:'', icon:''})
+    const [form, setForm] = useState({name:"", slug:"", icon:""})
+    
+    const {mutate, isLoading, data, error} = useMutation(addCategory)
+    console.log({ isLoading,error,data})
+    if(isLoading){console.log('loading')}
+
     const changeHandler = event => {
         setForm({
             ...form,
@@ -10,14 +20,18 @@ function CategoryForm() {
         })
     }
 
+
     const submitHandler = (event) => {
         event.preventDefault()
-        console.log(form);
+        if(!form.icon || !form.name || !form.slug)return
+        mutate(form)
     }
 
   return (
-    <form onChange={changeHandler} onSubmit={submitHandler}>
+    <form onChange={changeHandler} onSubmit={submitHandler} className={styles.form}>
         <h3>دسته بندی جدید</h3>
+        {data?.status === 201 && <p>دسته بندی ایجاد شد</p>}
+        {!!error && <p>مشکلی پیش آمده دوباره سعی کنید</p>}
         <label htmlFor="name">اسم دسته بندی</label>
         <input type="text" name='name' id='name' />
 
@@ -27,7 +41,7 @@ function CategoryForm() {
         <label htmlFor="icon">آیکون</label>
         <input type="text" name='icon' id='icon' />
 
-        <button type='submit'>ایجاد</button>
+        <button type='submit' disabled={isLoading}>ایجاد</button>
     </form>
   )
 }
