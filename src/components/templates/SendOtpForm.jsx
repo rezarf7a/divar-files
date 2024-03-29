@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { sendOtp } from '../../services/auth'
 
 import styles from './SendOtpForm.module.css'

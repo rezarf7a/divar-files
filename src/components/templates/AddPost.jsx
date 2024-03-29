@@ -44,6 +44,8 @@ function AddPost() {
       formData.append(i, form[i])
     }
 
+    console.log(form)
+
     const token = getCookies('accessToken')
 
     axios.post(`${import.meta.env.VITE_BASE_URL}post/create`, formData, {
@@ -51,7 +53,7 @@ function AddPost() {
         "Content-Type": "multipart/form-data",
         Authorization: `bearer ${token}`
       }
-    }).then(res => toast.success(res.data.message)).catch(error => toast.error("مشکلی پیش آمده است"))
+    }).then(res => console.log(res))
   };
 
   return (

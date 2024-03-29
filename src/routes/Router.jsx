@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 
-import getProfile from '../services/user'
+import {getProfile} from '../services/user'
 
 import HomePage from '../pages/HomePage'
 import DashboardPage from '../pages/DashboardPage'

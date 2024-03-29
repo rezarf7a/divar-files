@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import getProfile from '../../services/user';
+import {getProfile} from '../../services/user';
 import { setCookies } from '../../utils/cookies';
 import { checkOtp } from '../../services/auth';
 
