@@ -7,4 +7,9 @@ const getCookies = (cookieName) => {
     return document.cookie.split(";").find(token => token.trim().split("=")[0] === cookieName)?.split("=")[1]
 }
 
-export {setCookies, getCookies}
+const deleteCookie = () => {
+    document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    document.cookie = 'refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+}
+
+export {setCookies, getCookies, deleteCookie}

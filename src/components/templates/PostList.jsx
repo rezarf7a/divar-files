@@ -7,9 +7,9 @@ import Loader from '../modules/Loader'
 import styles from "./postList.module.css"
 
 function PostList() {
-
+  
     const { data, isLoading } = useQuery(["get-my-posts"], getPosts)
-    // console.log({isLoading, data})
+    console.log({isLoading, data})
     // console.log(data.data.posts)
     
   return (
@@ -18,9 +18,9 @@ function PostList() {
       (<>
         <h3>آگهی های شما</h3>
         {
-          data.data.posts.map( post => (
+          data?.data.posts.map( post => (
             <div key={post._id} className={styles.post}>
-              <img src={post.images.length ? `${import.meta.env.VITE_BASE_URL}${post.images[0]}` : 'no-image.jpg'} />
+              <img src={post.images.length ? `${import.meta.env.VITE_BASE_URL}/${post.images[0]}` : 'no-image.jpg'} />
               <div>
                 <p>{post.options.title}</p>
                 <span>{post.options.content}</span>
