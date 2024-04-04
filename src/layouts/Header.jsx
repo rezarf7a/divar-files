@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import styles from './header.module.css'
 import { useQuery } from "@tanstack/react-query"
