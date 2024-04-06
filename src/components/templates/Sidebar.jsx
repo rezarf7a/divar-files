@@ -1,20 +1,21 @@
-import { useQuery } from '@tanstack/react-query'
 
-import { getCategory } from '../../services/admin'
 
 import styles from './sideBar.module.css'
 
-function Sidebar( {category} ) {
+function Sidebar( {category, getQuery} ) {
 
+  const clickHandler = (e) =>{
+    getQuery(e.target.id)
+  }
   
   return (
     <div className={styles.sidebar}>
       <h4>دسته بندی ها</h4>
-      <ul>
+      <ul onClick={clickHandler}>
         {
           category?.data.map( item => <li key={item._id}>
-            <img src={`${item.icon}.svg`} />
-            <p>{item.name}</p>
+            <img id={item._id} src={`${item.icon}.svg`} />
+            <p id={`${item._id}`} >{item.name}</p>
           </li>)
         }
       </ul>

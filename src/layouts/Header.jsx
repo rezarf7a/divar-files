@@ -28,14 +28,14 @@ function Header() {
                 <img src="/divar.svg" className={styles.logo} />
             </Link>
             <span>
-                <img src="location.svg" />
+                <img src="/location.svg" />
                 <p>تهران</p>
             </span>
         </div>
         <div style={{position: 'relative'}}>
             {/* <Link to='/auth'> */}
                 <span onClick={showHandler} style={{cursor: "pointer"}}>
-                    <img src="profile.svg" />
+                    <img src="/profile.svg" />
                     <p>دیوار من</p>
                 </span>
             {/* </Link> */}
