@@ -3,18 +3,11 @@ import { Link } from 'react-router-dom'
 
 import styles from './main.module.css'
 
-function Main( {posts, query} ) {
+function Main( {posts, query, filterData} ) {
 
-  console.log(posts)
-  console.log(query.category)
   const BASE_URL = import.meta.env.VITE_BASE_URL
 
-  const filterData = (allData, filteredValue) => {
-    
-      if(!filteredValue) return allData.data.posts
-
-      return allData.data.posts.filter((item) => item.category.includes(filteredValue))
-    }
+  
 
     const filteredPosts = filterData(posts, query.category);
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useSearchParams } from 'react-router-dom'
 
 import { getAllPosts } from '../services/user'
 import { getCategory } from '../services/admin'
-// import { filterData } from '../utils/helper'
+import { filterData, setParams } from '../utils/helper'
 
 import Sidebar from '../components/templates/Sidebar'
 import Main from '../components/templates/Main'
@@ -15,28 +16,26 @@ const style = {
 
 function HomePage() {
 
+  const [query, setQuery] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { data: posts, isLoading: postsLoading } = useQuery(["get-all-posts"], getAllPosts);
   const { data: categories, isLoading: categoryLoding } = useQuery(["get-category"], getCategory);
-
-  console.log({posts, postsLoading})
-  // console.log({categories, categoryLoding})
-  
-
-  const [query, setQuery] = useState({});
-  const [displayed, setDisplayed] = useState([])
 
   const getQuery = (data) => {
     setQuery({category: `${data}`})
   }
 
-  // const filterData = (allData, categorys) => {
-    
-  //   if(!categorys) return allData
-  //   return allData?.data.posts.filter(item => item.category.includes(categorys.category))
-  // }
-  // console.log(filterData(posts, query))
+  useEffect( () => {
+    const query = {}
+    const category = searchParams.get("category")
+    if(category) query.category = category
+    setQuery(query)
+  }, [])
 
-  // useEffect( () => { console.log(query)}, [query])
+  useEffect( () => {
+    setSearchParams(setParams(query))
+  }, [query])
 
   return (
     <>
@@ -44,7 +43,7 @@ function HomePage() {
         postsLoading || categoryLoding ? <Loader /> : (
           <div style={style}>
           <Sidebar category={categories} getQuery={getQuery}  />
-          <Main posts={posts} query={query} />
+          <Main posts={posts} query={query} filterData={filterData} />
           </div>
         )
       }

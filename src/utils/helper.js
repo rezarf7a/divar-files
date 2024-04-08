@@ -1,7 +1,16 @@
-const filterData = (allData, categorys) => {
-    if(!categorys) return allData
-    allData?.data.posts.filter(item => item.category.includes(categorys))
-    console.log('run')
-  }
+const filterData = (allData, filteredValue) => {
+    
+  if(!filteredValue) return allData.data.posts
 
-  export { filterData }
+  return allData.data.posts.filter((item) => item.category.includes(filteredValue))
+}
+
+const setParams = (curentQuery) => {
+  if(curentQuery.category === ''){
+    return {}
+  }else{
+    return curentQuery
+  }
+}
+
+  export { filterData, setParams }
